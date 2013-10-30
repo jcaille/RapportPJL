@@ -1,0 +1,59 @@
+\documentclass[12pt,a4paper]{article}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------       Package
+\usepackage[utf8]{inputenc}
+\usepackage[left=2.5cm, right=2.5cm, top=3.2cm, bottom=2cm, headsep=2.5cm]{geometry}
+
+%----- ABSTRACT
+
+%----- En tête
+
+\title{Projet Libre - Rapport bibliographique}
+\date{Octobre 2013 - Juin 2014}
+\author{Jean CAILLÉ}
+
+\begin{document}
+\maketitle
+
+%------------------------------------------> SECTION Saliency
+\section{Saliency}
+Afin de mieux comprendre les problématiques de traitement de vidéos, et de construire une base bibliographique, j'ai commencé par étudier la saillance dans les images. Fondamentalement, le problème consiste à trouver dans une image les objets intéressants, la définition des termes "objets" et "intéressant" étant assez flous. 
+
+%---------------------------------------------------> SUB SECTION Définition du problème
+\subsection{Définition du problème}
+Le problème de Saillance dans une image est en soit mal posé. Il n'existe pas en effet de référence globale, et la définition d'un "objet intéressant" peut varier de personnes en personnes. Généralement, la qualité des algorithmes décrits est évaluée par comparaison avec des résultats obtenus par des opérateurs humain sur un jeu de données particulier. La première consiste à suivre le regard d'une personne lorsque l'image lui est présentée grâce à des outils d'eye-tracking. La seconde consiste à demander à des opérateurs humains d'indiquer à la main quels parties de l'image paraissent intéressantes.
+
+%---------------------------------------------------> SUB SECTION Objectifs de l'analyse bibliographique
+\subsection{Objectifs de l'analyse bibliographique}
+Chez Stupeflix : Obtenir des résultats corrects, en un temps raisonnable (<< 1s) avec une implémentation sur iPhone.
+
+%---------------------------------------------------> SUB SECTION Itti's algorithm
+\subsection{Itti's algorithm}
+%  TODO
+
+%---------------------------------------------------> SUB SECTION Saliency detection : A spectral residual approach
+\subsection{Saliency detection : A spectral residual approach}
+% Source : http://www.klab.caltech.edu/~xhou/papers/cvpr07.pdf
+% Auteurs : Xiaodi Hou and Liqing Zhang
+% Date de la publication : 2007
+
+%---------------------------------------------------> SUB SECTION Salient Region Detection and Segmentation
+\subsection{Salient Region Detection and Segmentation}
+%Source : http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.167.1500&rep=rep1&type=pdf
+% Auteurs : Radhakrishna Achanta, Francisco Estrada, Patricia Wils, and Sabine SÄusstrunk
+% Date de publication : 2008 \\ 
+
+L'idée principal de cet article est similaire à celle d'Itti et al, mais se distingue par plusieurs points clés. La saillance est toujours obtenue par comparaison entre un pixel et une région avoisinante, mais cette comparaison est ici effectuée dans un espace échelle à 4 dimensions (3 dimensions de couleur, 1 dimension d'échelle). Les cartes de saillance [A DEFINIR] obtenus sont à prioris de meilleur qualité que ceux résultant de la méthode d'Itti et al., et permettent selon les auteurs une segmentation peu couteuse et sans supervisation des objets saillants dans l'image. 
+
+%------------------------------------------------------------> SUB SUB SECTION Espace Couleur CIELab
+\subsubsection{Espace Couleur CIELab}
+La saillance des objets à beaucoup à voir avec la perception par l'oeil humain des couleurs et des formes. En particulier, les distances entre couleurs, plus que les couleurs en elle mêmes joue un rôle important. Or, l'espace de couleur classique utilisé en informatique (i.e. espace RGB) ne retranscript pas bien les différences de couleurs percues
+
+[[ FIGURE | Deux paires de couleurs à distances euclidiennes égales, mais à distances perçues importantes]]
+
+L'espace CIEL*a*b*, développé en 1976 par la Commission International de l'Éclairage a quand à lui été créé pour que les distances calculées entre deux couleurs (grâce à la distance euclidienne dans R3) correspondent aux différences perçues par l'oeil humain. Une couleur est représentée par trois composantes L, a et b. La clarté L est définie de 0 (noir) à 100 (blanc), la couleur est encodée par deux valeurs a et b appelées chrominance, qui (en informatique) varient de -128 à 128 et peuvent donc être codées sur un octet chacun. Cet espace étant défini de manière absolue, la formule de conversion enter RGB et CIELab dépend généralement de la calibration de l'écran employé (en particulier la température du blanc pour l'écran employé). A noter que cette conversion n'est pas linéaire. Le standard whitepoint65, employé par plusieurs grands acteurs de l'image informatique (Adobe Photoshop, OpenCV, ...) donne pour formule de conversion :
+
+[[ FORMULE ]]
+
+
+
+\end{document}
